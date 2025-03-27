@@ -181,42 +181,52 @@
             }
         ];
 
-        let currentIndex = 0;
-        let incorrectQuestions = [];
-
-        function loadQuestion(index) {
-            if (index >= quizData.length) {
-                if (incorrectQuestions.length > 0) {
-                    quizData.push(...incorrectQuestions);
-                    incorrectQuestions = [];
-                    currentIndex = quizData.length - incorrectQuestions.length;
-                    alert("Now reattempting the ones you got wrong.");
-                } else {
-                    alert("You have completed all questions!");
-                    return;
-                }
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
             }
+        }
 
-            const questionContainer = document.getElementById("question");
+        let currentIndex = 0;
+        let incorrectAnswers = 0;
+
+        function loadQuestion() {
+            const quiz = quizData[currentIndex];
+            document.getElementById("question").textContent = quiz.question;
+
+            // Shuffle the answer options
+            shuffleArray(quiz.options);
+
             const optionsContainer = document.getElementById("options");
-            questionContainer.innerHTML = quizData[index].question;
             optionsContainer.innerHTML = "";
 
-            quizData[index].options.forEach(option => {
+            quiz.options.forEach(option => {
                 const button = document.createElement("button");
-                button.innerHTML = option;
-                button.onclick = () => checkAnswer(option, quizData[index].correct);
+                button.textContent = option;
+                button.onclick = function () {
+                    if (option === quiz.correct) {
+                        button.classList.add("correct");
+                    } else {
+                        button.classList.add("wrong");
+                        incorrectAnswers++;
+                    }
+
+                    setTimeout(function () {
+                        currentIndex++;
+                        if (currentIndex < quizData.length) {
+                            loadQuestion();
+                        } else {
+                            alert(`Quiz completed! You got ${incorrectAnswers} incorrect answers.`);
+                        }
+                    }, 1000);
+                };
                 optionsContainer.appendChild(button);
             });
         }
 
-        function checkAnswer(selected, correct) {
-            if (selected !== correct) incorrectQuestions.push(quizData[currentIndex]);
-            currentIndex++;
-            loadQuestion(currentIndex);
-        }
-
-        loadQuestion(currentIndex);
+        loadQuestion();
     </script>
+
 </body>
 </html>
