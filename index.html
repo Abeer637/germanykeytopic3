@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nazi Germany Quiz - Key Topic 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        #quiz-container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 22px;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .correct { background: #28a745; color: white; }
+        .wrong { background: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+
+    <div id="quiz-container">
+        <h1>Nazi Germany Quiz - Key Topic 3</h1>
+        <div class="question" id="question"></div>
+        <div class="options" id="options"></div>
+    </div>
+
+    <script>
+        const quizData = [
+            { question: "When was the Reichstag Fire?", options: ["January 30, 1933", "February 27, 1933", "March 23, 1933"], correct: "February 27, 1933", explanation: "The Reichstag Fire occurred on February 27, 1933. The Nazis blamed communists and used it to suppress opposition." },
+            { question: "Who was blamed for the Reichstag Fire?", options: ["A Dutch communist", "A Nazi official", "A Jewish businessman"], correct: "A Dutch communist", explanation: "Marinus van der Lubbe, a Dutch communist, was accused of setting fire to the Reichstag." },
+            { question: "What was the Reichstag Fire Decree?", options: ["A law banning communists", "A trade agreement", "A new election law"], correct: "A law banning communists", explanation: "The Reichstag Fire Decree suspended civil liberties, allowing Hitler to arrest thousands of political rivals." },
+            { question: "When was the Enabling Act passed?", options: ["March 23, 1933", "April 30, 1933", "June 30, 1934"], correct: "March 23, 1933", explanation: "The Enabling Act, passed on March 23, 1933, gave Hitler the power to pass laws without Reichstag approval." },
+            { question: "Why was the Enabling Act significant?", options: ["It made Hitler a dictator", "It banned the Nazi Party", "It started WWII"], correct: "It made Hitler a dictator", explanation: "The Enabling Act allowed Hitler to rule by decree, effectively making him a dictator." },
+            { question: "What was the Night of the Long Knives?", options: ["A Nazi purge of the SA", "A Communist uprising", "A foreign invasion"], correct: "A Nazi purge of the SA", explanation: "On June 30, 1934, Hitler ordered the SS to kill SA leaders like Ernst Röhm." },
+            { question: "Who was the leader of the SA?", options: ["Himmler", "Röhm", "Goebbels"], correct: "Röhm", explanation: "Ernst Röhm led the SA but was seen as a threat by Hitler." },
+            { question: "What happened when Hindenburg died?", options: ["Hitler became Führer", "Germany became democratic", "The Weimar Republic returned"], correct: "Hitler became Führer", explanation: "After Hindenburg's death in 1934, Hitler declared himself 'Führer'." },
+            { question: "What was the Gestapo?", options: ["Secret police", "A military unit", "Hitler's personal guard"], correct: "Secret police", explanation: "The Gestapo was the secret police that arrested and tortured political enemies." },
+            { question: "What was the purpose of concentration camps?", options: ["Forced labor and punishment", "A place for Nazi leaders", "A military training ground"], correct: "Forced labor and punishment", explanation: "Concentration camps were used to imprison and punish political enemies, Jews, and others." },
+            { question: "How did the Nazis use propaganda?", options: ["Through media, rallies, and censorship", "By giving free food", "By banning books"], correct: "Through media, rallies, and censorship", explanation: "Joseph Goebbels controlled newspapers, radio, and films to spread Nazi messages." },
+            { question: "How did Hitler control the churches?", options: ["Made deals with the Pope", "Banned Christianity", "Closed all churches"], correct: "Made deals with the Pope", explanation: "The 1933 Concordat with the Pope ensured Catholics wouldn't oppose Hitler." },
+            { question: "What was the Hitler Youth?", options: ["A Nazi youth organization", "A military school", "A propaganda newspaper"], correct: "A Nazi youth organization", explanation: "The Hitler Youth trained young Germans to be loyal Nazis." },
+            { question: "What was the role of women in Nazi Germany?", options: ["Mothers and homemakers", "Workers in industry", "Political leaders"], correct: "Mothers and homemakers", explanation: "Women were encouraged to stay at home, have children, and follow the 'Three Ks' (Kinder, Küche, Kirche - Children, Kitchen, Church)." },
+            { question: "What was Kristallnacht?", options: ["An attack on Jews", "A Nazi rally", "A battle"], correct: "An attack on Jews", explanation: "On November 9-10, 1938, Jewish businesses, synagogues, and homes were attacked in Kristallnacht (Night of Broken Glass)." },
+            { question: "When did WWII begin?", options: ["September 1, 1939", "June 6, 1941", "December 7, 1941"], correct: "September 1, 1939", explanation: "WWII began on September 1, 1939, when Germany invaded Poland." }
+        ];
+
+        let currentIndex = 0;
+        let incorrectQuestions = [];
+
+        function loadQuestion(index) {
+            if (index >= quizData.length) {
+                if (incorrectQuestions.length > 0) {
+                    quizData.push(...incorrectQuestions);
+                    incorrectQuestions = [];
+                    currentIndex = quizData.length - incorrectQuestions.length;
+                    alert("Now reattempting the ones you got wrong.");
+                } else {
+                    alert("You have completed all questions!");
+                    return;
+                }
+            }
+
+            const questionContainer = document.getElementById("question");
+            const optionsContainer = document.getElementById("options");
+            questionContainer.innerHTML = quizData[index].question;
+            optionsContainer.innerHTML = "";
+
+            quizData[index].options.forEach(option => {
+                const button = document.createElement("button");
+                button.innerHTML = option;
+                button.onclick = () => checkAnswer(option, quizData[index].correct, quizData[index].explanation);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selected, correct, explanation) {
+            alert(explanation);
+            if (selected !== correct) incorrectQuestions.push(quizData[currentIndex]);
+            currentIndex++;
+            loadQuestion(currentIndex);
+        }
+
+        loadQuestion(currentIndex);
+    </script>
+</body>
+</html>
