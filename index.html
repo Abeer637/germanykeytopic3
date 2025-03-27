@@ -53,22 +53,132 @@
 
     <script>
         const quizData = [
-            { question: "When was the Reichstag Fire?", options: ["January 30, 1933", "February 27, 1933", "March 23, 1933"], correct: "February 27, 1933", explanation: "The Reichstag Fire occurred on February 27, 1933. The Nazis blamed communists and used it to suppress opposition." },
-            { question: "Who was blamed for the Reichstag Fire?", options: ["A Dutch communist", "A Nazi official", "A Jewish businessman"], correct: "A Dutch communist", explanation: "Marinus van der Lubbe, a Dutch communist, was accused of setting fire to the Reichstag." },
-            { question: "What was the Reichstag Fire Decree?", options: ["A law banning communists", "A trade agreement", "A new election law"], correct: "A law banning communists", explanation: "The Reichstag Fire Decree suspended civil liberties, allowing Hitler to arrest thousands of political rivals." },
-            { question: "When was the Enabling Act passed?", options: ["March 23, 1933", "April 30, 1933", "June 30, 1934"], correct: "March 23, 1933", explanation: "The Enabling Act, passed on March 23, 1933, gave Hitler the power to pass laws without Reichstag approval." },
-            { question: "Why was the Enabling Act significant?", options: ["It made Hitler a dictator", "It banned the Nazi Party", "It started WWII"], correct: "It made Hitler a dictator", explanation: "The Enabling Act allowed Hitler to rule by decree, effectively making him a dictator." },
-            { question: "What was the Night of the Long Knives?", options: ["A Nazi purge of the SA", "A Communist uprising", "A foreign invasion"], correct: "A Nazi purge of the SA", explanation: "On June 30, 1934, Hitler ordered the SS to kill SA leaders like Ernst Röhm." },
-            { question: "Who was the leader of the SA?", options: ["Himmler", "Röhm", "Goebbels"], correct: "Röhm", explanation: "Ernst Röhm led the SA but was seen as a threat by Hitler." },
-            { question: "What happened when Hindenburg died?", options: ["Hitler became Führer", "Germany became democratic", "The Weimar Republic returned"], correct: "Hitler became Führer", explanation: "After Hindenburg's death in 1934, Hitler declared himself 'Führer'." },
-            { question: "What was the Gestapo?", options: ["Secret police", "A military unit", "Hitler's personal guard"], correct: "Secret police", explanation: "The Gestapo was the secret police that arrested and tortured political enemies." },
-            { question: "What was the purpose of concentration camps?", options: ["Forced labor and punishment", "A place for Nazi leaders", "A military training ground"], correct: "Forced labor and punishment", explanation: "Concentration camps were used to imprison and punish political enemies, Jews, and others." },
-            { question: "How did the Nazis use propaganda?", options: ["Through media, rallies, and censorship", "By giving free food", "By banning books"], correct: "Through media, rallies, and censorship", explanation: "Joseph Goebbels controlled newspapers, radio, and films to spread Nazi messages." },
-            { question: "How did Hitler control the churches?", options: ["Made deals with the Pope", "Banned Christianity", "Closed all churches"], correct: "Made deals with the Pope", explanation: "The 1933 Concordat with the Pope ensured Catholics wouldn't oppose Hitler." },
-            { question: "What was the Hitler Youth?", options: ["A Nazi youth organization", "A military school", "A propaganda newspaper"], correct: "A Nazi youth organization", explanation: "The Hitler Youth trained young Germans to be loyal Nazis." },
-            { question: "What was the role of women in Nazi Germany?", options: ["Mothers and homemakers", "Workers in industry", "Political leaders"], correct: "Mothers and homemakers", explanation: "Women were encouraged to stay at home, have children, and follow the 'Three Ks' (Kinder, Küche, Kirche - Children, Kitchen, Church)." },
-            { question: "What was Kristallnacht?", options: ["An attack on Jews", "A Nazi rally", "A battle"], correct: "An attack on Jews", explanation: "On November 9-10, 1938, Jewish businesses, synagogues, and homes were attacked in Kristallnacht (Night of Broken Glass)." },
-            { question: "When did WWII begin?", options: ["September 1, 1939", "June 6, 1941", "December 7, 1941"], correct: "September 1, 1939", explanation: "WWII began on September 1, 1939, when Germany invaded Poland." }
+            { 
+                question: "When was the Reichstag Fire?", 
+                options: ["January 30, 1933 - The day Hitler became Chancellor", 
+                          "February 27, 1933 - The night the Reichstag building was set on fire", 
+                          "March 23, 1933 - The day the Enabling Act was passed"], 
+                correct: "February 27, 1933 - The night the Reichstag building was set on fire" 
+            },
+            { 
+                question: "Who was blamed for the Reichstag Fire?", 
+                options: ["Marinus van der Lubbe - A Dutch communist accused of arson", 
+                          "Ernst Röhm - Leader of the SA", 
+                          "Hermann Göring - Head of the Luftwaffe"], 
+                correct: "Marinus van der Lubbe - A Dutch communist accused of arson" 
+            },
+            { 
+                question: "What impact did the Reichstag Fire have on Hitler’s power?", 
+                options: ["Increased his control - Used it to pass the Reichstag Fire Decree, limiting freedoms", 
+                          "Weakened him - People blamed the Nazis", 
+                          "Had no effect - The event was ignored"], 
+                correct: "Increased his control - Used it to pass the Reichstag Fire Decree, limiting freedoms" 
+            },
+            { 
+                question: "What was the Enabling Act (March 23, 1933)?", 
+                options: ["Allowed Hitler to rule by decree, bypassing the Reichstag", 
+                          "Banned all political parties except the Nazi Party", 
+                          "Created the Gestapo, Hitler’s secret police"], 
+                correct: "Allowed Hitler to rule by decree, bypassing the Reichstag" 
+            },
+            { 
+                question: "What was the Night of the Long Knives (June 30, 1934)?", 
+                options: ["A Nazi purge where Hitler eliminated SA leaders like Ernst Röhm", 
+                          "A Nazi celebration marking their rise to power", 
+                          "A failed coup against Hitler"], 
+                correct: "A Nazi purge where Hitler eliminated SA leaders like Ernst Röhm" 
+            },
+            { 
+                question: "When did President Hindenburg die?", 
+                options: ["August 2, 1934 - Hitler combined the roles of President and Chancellor", 
+                          "January 30, 1933 - The day Hitler became Chancellor", 
+                          "September 1, 1939 - Start of WWII"], 
+                correct: "August 2, 1934 - Hitler combined the roles of President and Chancellor" 
+            },
+            { 
+                question: "What did Hitler do after Hindenburg’s death?", 
+                options: ["Declared himself Führer - Absolute ruler of Germany", 
+                          "Called for new elections", 
+                          "Resigned as Chancellor"], 
+                correct: "Declared himself Führer - Absolute ruler of Germany" 
+            },
+            { 
+                question: "What was the Gestapo?", 
+                options: ["The Nazi secret police, used to eliminate opposition", 
+                          "The elite SS guard that protected Hitler", 
+                          "A Nazi youth group"], 
+                correct: "The Nazi secret police, used to eliminate opposition" 
+            },
+            { 
+                question: "What was Kristallnacht (November 9-10, 1938)?", 
+                options: ["A violent Nazi attack on Jewish businesses and synagogues", 
+                          "A Nazi propaganda festival", 
+                          "A celebration of Hitler’s birthday"], 
+                correct: "A violent Nazi attack on Jewish businesses and synagogues" 
+            },
+            { 
+                question: "What was the purpose of concentration camps?", 
+                options: ["To imprison and punish enemies of the Nazi state", 
+                          "To train Nazi soldiers", 
+                          "To provide free housing"], 
+                correct: "To imprison and punish enemies of the Nazi state" 
+            },
+            { 
+                question: "What was the role of the SA (Sturmabteilung)?", 
+                options: ["The SA acted as Hitler's private army and terrorized political opponents", 
+                          "The SA was a youth organization for German boys", 
+                          "The SA was the organization responsible for carrying out military operations during WWII"], 
+                correct: "The SA acted as Hitler's private army and terrorized political opponents" 
+            },
+            { 
+                question: "How did Hitler use propaganda?", 
+                options: ["He used radio, films, and posters to spread Nazi ideology and strengthen his control", 
+                          "He ignored media and focused on military power", 
+                          "He encouraged the press to speak freely about government issues"], 
+                correct: "He used radio, films, and posters to spread Nazi ideology and strengthen his control" 
+            },
+            { 
+                question: "What was the Nuremberg Laws (1935)?", 
+                options: ["A set of laws that discriminated against Jews, stripping them of rights", 
+                          "A set of economic policies to aid in Germany's recovery", 
+                          "A law that gave Hitler absolute power over the military"], 
+                correct: "A set of laws that discriminated against Jews, stripping them of rights" 
+            },
+            { 
+                question: "What was the purpose of the Hitler Youth?", 
+                options: ["To indoctrinate young Germans with Nazi ideology and prepare them for military service", 
+                          "To train young Germans in the arts and culture", 
+                          "To provide a social group for teenagers"], 
+                correct: "To indoctrinate young Germans with Nazi ideology and prepare them for military service" 
+            },
+            { 
+                question: "How did Hitler view the Treaty of Versailles?", 
+                options: ["He saw it as a humiliating document and sought to overturn its terms", 
+                          "He agreed with it and sought to maintain peace", 
+                          "He was indifferent to the treaty and focused on other issues"], 
+                correct: "He saw it as a humiliating document and sought to overturn its terms" 
+            },
+            { 
+                question: "What was the significance of the Munich Putsch (1923)?", 
+                options: ["It was Hitler’s failed coup attempt, but it brought him national attention", 
+                          "It marked the rise of Hitler as Chancellor", 
+                          "It was the first victory of the Nazi Party in a national election"], 
+                correct: "It was Hitler’s failed coup attempt, but it brought him national attention" 
+            },
+            { 
+                question: "What was the Dawes Plan (1924)?", 
+                options: ["A plan to reduce Germany's reparations payments and stabilize its economy", 
+                          "A military strategy developed by Nazi Germany", 
+                          "A law passed by the Reichstag to give Hitler more power"], 
+                correct: "A plan to reduce Germany's reparations payments and stabilize its economy" 
+            },
+            { 
+                question: "What was the role of propaganda in Nazi Germany?", 
+                options: ["To manipulate public opinion, spread Nazi ideology, and glorify Hitler", 
+                          "To entertain the public with films and shows", 
+                          "To educate people about Germany’s history and culture"], 
+                correct: "To manipulate public opinion, spread Nazi ideology, and glorify Hitler" 
+            }
         ];
 
         let currentIndex = 0;
@@ -95,13 +205,12 @@
             quizData[index].options.forEach(option => {
                 const button = document.createElement("button");
                 button.innerHTML = option;
-                button.onclick = () => checkAnswer(option, quizData[index].correct, quizData[index].explanation);
+                button.onclick = () => checkAnswer(option, quizData[index].correct);
                 optionsContainer.appendChild(button);
             });
         }
 
-        function checkAnswer(selected, correct, explanation) {
-            alert(explanation);
+        function checkAnswer(selected, correct) {
             if (selected !== correct) incorrectQuestions.push(quizData[currentIndex]);
             currentIndex++;
             loadQuestion(currentIndex);
